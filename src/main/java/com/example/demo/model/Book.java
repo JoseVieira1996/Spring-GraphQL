@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Book {
 	
 	@Id
@@ -23,7 +24,21 @@ public class Book {
 	private String title;
 	private String publisher;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Author author;
+	//@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "author_id",
+            nullable = false, updatable = false)
+    private Author author;
 
+    
+    public Book() {
+    }
+
+    public Book(String title, String publisher, Author author) {
+        this.title = title;
+        this.publisher = publisher;
+        this.author = author;
+    }
+
+	
 }

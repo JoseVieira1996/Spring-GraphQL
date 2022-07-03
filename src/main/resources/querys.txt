@@ -1,0 +1,68 @@
+query{
+  authorById(id:2){
+    id
+    name
+  }
+}
+
+
+query{
+  authors{
+    
+		id
+    name
+    books {
+      id
+      title
+      publisher
+    }
+    
+  }
+}
+
+      mutation{
+  newBook(name:"The KING", publisher: "2010") {
+    id
+    title
+    publisher
+  }
+}
+
+query{
+  allBook{
+    
+	  id   
+    title
+    publisher
+  }
+}
+
+
+mutation{
+  deleteBook(id:1){
+  	id
+  title
+    publisher
+}
+}
+
+mutation{
+	updateBook(id:1, title:"o rei", publisher:"teste") {
+	  id
+    title
+    publisher
+	}
+}
+
+query{
+  allBook{
+    
+	  id   
+    title
+    publisher
+    author{
+      id
+      name
+    }
+  }
+}

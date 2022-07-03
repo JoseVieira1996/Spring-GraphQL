@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.model.Author;
 import com.example.demo.model.Book;
 import com.example.demo.repository.BookRepository;
 
@@ -17,10 +18,11 @@ public class BookMutation implements GraphQLMutationResolver {
     @Autowired
     BookRepository bookRepository;
 
-    public Book newBook(String title, String publisher){
+    public Book newBook(String title, String publisher, Integer authorId){
         Book book =  new Book();
         book.setTitle(title);
         book.setPublisher(publisher);
+        book.setAuthor(new Author(authorId));
         return bookRepository.save(book);
     }
 
